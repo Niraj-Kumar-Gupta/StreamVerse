@@ -1,0 +1,38 @@
+body{
+    background-color: rgb(53, 47, 47);
+    color: white;
+    align-items: center;
+    /* text-align: center; */
+}
+.video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:40px;
+    border: 2px solid rgb(97, 95, 36);
+  }
+  .mybtn{
+     margin:20px;
+     width:100%;
+  }
+  .btn{
+     margin-left:10px;
+  }
+  .description{
+     margin:40px;
+  }
+  br{
+    color: #ffffff;
+  }
+  a{
+    color: white;
+    text-decoration: none;
+  }
+  .btn:hover{
+    background-color: rgb(246, 250, 137);
+  }
+
+  @media (max-width: 768px) {
+    .video {
+      width: 80vw;
+    }}
