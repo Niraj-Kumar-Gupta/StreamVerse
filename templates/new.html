@@ -1,0 +1,33 @@
+<div class="timeline-event-copy">
+    <p class="timeline-event-thumbnail">{{events}}</p>
+    {% for event in days[events] %}
+    <h3>{{event.Name}}</h3>
+    <button class="expand-btn">Click to Expand</button>
+    <div class="expand-content">
+      <p><strong>{{event.time}} hrs</strong><br>{{event.Overview}}</p>
+      {% if myevents %}
+      <a href="/stream/{{event.index}}/{{event.cam1}}"><button type="button" style="background-color:#76c7ed; color:#ffffff; width:100px; height:35px;" class="btn">View</button></a>
+      {% else %}
+      <a href="/register/{{event.index}}"><button type="button" style="background-color:#76c7ed; color:#ffffff; width:100px; height:35px;" class="btn">Register</button></a>
+      {% endif%}
+    </div>
+    {% endfor %}
+  </div>
+  
+  <style>
+    .expand-content {
+      display: none;
+    }
+  </style>
+  
+  <script>
+    var expandBtns = document.querySelectorAll('.expand-btn');
+    expandBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var content = this.nextElementSibling;
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+        this.textContent = content.style.display === 'none' ? 'Click to Expand' : 'Click to Collapse';
+      });
+    });
+  </script>
+  

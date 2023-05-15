@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='/css/video.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="video">
+      <video
+        id="my-video"
+        class="video-js vjs-big-play-centered vjs-theme-sea"
+        controls
+        preload="auto"
+        fluid="true"
+        poster=""
+        data-setup="{}"
+      >
+        <source
+          src="http://192.168.58.54/hls/{{streamid}}.m3u8"
+          type="application/x-mpegURL"
+        />
+      </video>
+    </div>
+    <div class="mybtn">
+      <a href="/stream/{{stream.index}}/{{stream.cam1}}">
+      <button type="button" class="btn btn-warning">Cam1</button>
+    </a>
+    <a href="/stream/{{stream.index}}/{{stream.cam2}}">
+      <button type="button" class="btn btn-warning">Cam2</button>
+    </a>
+    <a href="/stream/{{stream.index}}/{{stream.cam3}}">
+      <button type="button" class="btn btn-warning">Cam3</button>
+    </a>
+    <a href="/stream/{{stream.index}}/{{stream.cam4}}">
+      <button type="button" class="btn btn-warning">Cam4</button>
+    </a>
+    </div>
+    <div class="description">
+      <h1>{{stream.Name}}</h1>
+      <h5>{{stream.date_and_time}}</h5>
+      <p>{{stream.Overview}}
+      </p>
+    </div>
+
+
+
+
+    <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+    <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var player = videojs("my-video");
+    </script>
+  </body>
+</html>
