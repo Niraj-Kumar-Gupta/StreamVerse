@@ -150,7 +150,7 @@ def signup():
 
 
 
-
+# home route with no custom message
 from collections import defaultdict
 @app.route('/')
 def home(message=None):
@@ -174,6 +174,8 @@ def home(message=None):
         return render_template('events.html',days=days,myevents=False,user=False)
         
 
+
+# home page with custom message
 @app.route('/new/<message>')
 def home1(message):
     user= load_user(current_user.get_id())
@@ -199,19 +201,20 @@ def home1(message):
 
 
 
+# showing my events page 
 @login_required
 @app.route('/myevents')
 def events(message=None):
     user= load_user(current_user.get_id())
     if user:
         days=defaultdict(list)
-        allevents=event_db.query.order_by(
-                    event_db.date_created).all()
+        
         
         
         regiesterEvents=register_events_db.query.filter_by(user=user.username).all()
-        for event in allevents:
-            if register_events_db.query.filter_by(index=event.index).first():
+        for myevent in regiesterEvents:
+            event=event_db.query.filter_by(index=myevent.index).first()
+            if event: 
                 days[event.date].append(event)
         if len(days)==0:
             return render_template('events.html',days=days,myevents=True,user=user,message="No events registered")
@@ -223,6 +226,8 @@ def events(message=None):
 
 
 
+
+# register for event with event id
 @app.route("/register/<int:id>")
 def form(id):
     user= load_user(current_user.get_id())
@@ -242,7 +247,9 @@ def form(id):
         return redirect(url_for('home1',message="login First"))
     
     
-    
+
+
+# streaming video with streamid and event id
 @login_required
 @app.route("/stream/<id>/<streamid>")
 def video(id,streamid):
